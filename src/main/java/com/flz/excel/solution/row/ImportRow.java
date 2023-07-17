@@ -1,4 +1,4 @@
-package com.flz.excel.solution.parser.row;
+package com.flz.excel.solution.row;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

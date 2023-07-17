@@ -1,6 +1,6 @@
-package com.flz.excel.solution.parser.exception;
+package com.flz.excel.solution.exception;
 
-import com.flz.excel.solution.parser.enums.ExcelParseExceptionLevel;
+import com.flz.excel.solution.enums.ExcelParseExceptionLevel;
 import lombok.Getter;
 
 @Getter

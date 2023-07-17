@@ -1,4 +1,4 @@
-package com.flz.excel.solution.parser.enums;
+package com.flz.excel.solution.enums;
 
 public enum ExcelParseExceptionLevel {
     ERROR,
