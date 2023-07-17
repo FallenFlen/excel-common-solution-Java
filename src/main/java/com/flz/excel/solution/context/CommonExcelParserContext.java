@@ -1,5 +1,6 @@
 package com.flz.excel.solution.context;
 
+import com.flz.excel.solution.enums.ExcelParseExceptionLevel;
 import com.flz.excel.solution.exception.ExcelParseBusinessException;
 import com.flz.excel.solution.row.ImportRow;
 
@@ -47,5 +48,19 @@ public class CommonExcelParserContext<T> implements ExcelParserContext<T> {
     @Override
     public void addExceptions(List<ExcelParseBusinessException> exceptions) {
         exceptions.forEach(e -> exceptionMap.computeIfAbsent(e.getLineNum(), v -> new ArrayList<>()).add(e));
+    }
+
+    @Override
+    public boolean hasError() {
+        return exceptionMap.values().stream()
+                .flatMap(List::stream)
+                .anyMatch(it -> it.getLevel() == ExcelParseExceptionLevel.ERROR);
+    }
+
+    @Override
+    public boolean hasWarning() {
+        return exceptionMap.values().stream()
+                .flatMap(List::stream)
+                .anyMatch(it -> it.getLevel() == ExcelParseExceptionLevel.WARNING);
     }
 }

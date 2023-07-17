@@ -17,4 +17,8 @@ public interface ExcelParserContext<T> {
     Map<Integer, List<ExcelParseBusinessException>> getRowAndExceptionsMap();
 
     void addExceptions(List<ExcelParseBusinessException> exceptions);
+
+    boolean hasError();
+
+    boolean hasWarning();
 }

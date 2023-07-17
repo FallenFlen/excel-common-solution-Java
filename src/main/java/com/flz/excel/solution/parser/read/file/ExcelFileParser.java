@@ -16,7 +16,7 @@ import java.util.function.Consumer;
 @Slf4j
 @Component
 public class ExcelFileParser<T> {
-    @Value("${excel.parser.batch-size}")
+    @Value("${excel.parser.batch-size:100}")
     private int batchSize;
 
     public void batchParse(InputStream inputStream, Consumer<List<ImportRow<T>>> handler, Class<T> type) {
