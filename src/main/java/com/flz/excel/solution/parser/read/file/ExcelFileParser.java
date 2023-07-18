@@ -23,6 +23,10 @@ public class ExcelFileParser<T> {
         batchParse(inputStream, handler, type, batchSize, 0);
     }
 
+    public void batchParse(InputStream inputStream, Consumer<List<ImportRow<T>>> handler, Class<T> type, int headRowNumber) {
+        batchParse(inputStream, handler, type, batchSize, headRowNumber);
+    }
+
     public void batchParse(InputStream inputStream, Consumer<List<ImportRow<T>>> handler, Class<T> type, int batchSize, int headRowNumber) {
         try {
             ExcelFileBatchParseListener<T> parseListener = new ExcelFileBatchParseListener<>(batchSize, handler);

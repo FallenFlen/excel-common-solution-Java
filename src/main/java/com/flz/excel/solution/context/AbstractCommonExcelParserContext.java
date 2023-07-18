@@ -117,4 +117,8 @@ public abstract class AbstractCommonExcelParserContext<T> implements ExcelParser
                 .collect(Collectors.joining("\n"));
 
     }
+
+    public void setRows(List<ImportRow<T>> rows) {
+        this.rows = rows;
+    }
 }
