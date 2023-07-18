@@ -41,7 +41,7 @@ public class ExcelFileParser<T> {
         } catch (Exception e) {
             log.error("parse excel failed:", e);
             e.printStackTrace();
-            throw new BusinessException("parse excel failed");
+            throw new BusinessException(e.getMessage(), "parse excel failed");
         }
     }
 }

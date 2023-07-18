@@ -16,7 +16,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(BusinessException.class)
     public ErrorResult handleBusinessException(BusinessException e) {
         log.error("BusinessException:", e);
-        return ErrorResult.of(HttpStatus.BAD_REQUEST.value(), e.getMessage());
+        return ErrorResult.of(HttpStatus.BAD_REQUEST.value(),e.getErrorCode(), e.getMessage());
     }
 
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
