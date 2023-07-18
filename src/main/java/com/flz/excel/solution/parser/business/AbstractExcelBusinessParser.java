@@ -15,7 +15,7 @@ public abstract class AbstractExcelBusinessParser<T extends ExcelParserContext, 
     protected List<RowBusinessHandler<T>> handlers;
     protected T context;
 
-    // 生成结果：执行整条责任链，并直接generateResultDirectly
+    // 生成结果：执行整条责任链，并直接调用generateResultDirectly
     public R generateResult() {
         for (RowBusinessHandler<T> handler : handlers) {
             handler.handle(context);
