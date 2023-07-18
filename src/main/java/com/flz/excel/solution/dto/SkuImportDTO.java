@@ -1,4 +1,4 @@
-package com.flz.excel.solution.row.dto;
+package com.flz.excel.solution.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
