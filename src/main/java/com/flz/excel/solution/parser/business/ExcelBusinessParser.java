@@ -4,11 +4,13 @@ import com.flz.excel.solution.context.ExcelParserContext;
 import com.flz.excel.solution.dto.BaseImportResponseDTO;
 import com.flz.excel.solution.exception.BusinessException;
 import com.flz.excel.solution.handler.RowBusinessHandler;
+import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.List;
 
 @Slf4j
+@AllArgsConstructor
 public abstract class ExcelBusinessParser<T extends ExcelParserContext, R extends BaseImportResponseDTO> {
     protected List<RowBusinessHandler<T>> handlers;
     protected T context;

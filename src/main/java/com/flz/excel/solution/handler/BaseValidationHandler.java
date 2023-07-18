@@ -3,6 +3,7 @@ package com.flz.excel.solution.handler;
 import com.flz.excel.solution.context.ExcelParserContext;
 import com.flz.excel.solution.dto.ImportRow;
 import com.flz.excel.solution.exception.ExcelParseBusinessException;
+import org.springframework.stereotype.Component;
 
 import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
@@ -15,6 +16,7 @@ import java.util.stream.Collectors;
 /**
  * 基础校验：注解校验
  */
+@Component
 public class BaseValidationHandler<T> implements RowBusinessHandler<ExcelParserContext<T>> {
 
     @Override

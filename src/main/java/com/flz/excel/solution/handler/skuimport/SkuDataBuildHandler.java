@@ -4,11 +4,13 @@ import com.flz.excel.solution.context.skuimport.SkuExcelParserContext;
 import com.flz.excel.solution.dto.ImportRow;
 import com.flz.excel.solution.dto.skuimport.SkuImportResponseDTO;
 import com.flz.excel.solution.handler.RowBusinessHandler;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+@Component
 public class SkuDataBuildHandler implements RowBusinessHandler<SkuExcelParserContext> {
 
     @Override
