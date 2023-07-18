@@ -1,8 +1,8 @@
 package com.flz.excel.solution.context;
 
+import com.flz.excel.solution.dto.ImportRow;
 import com.flz.excel.solution.enums.ExcelParseExceptionLevel;
 import com.flz.excel.solution.exception.ExcelParseBusinessException;
-import com.flz.excel.solution.row.ImportRow;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 

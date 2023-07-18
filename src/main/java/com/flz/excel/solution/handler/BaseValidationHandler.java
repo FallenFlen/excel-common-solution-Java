@@ -1,8 +1,8 @@
 package com.flz.excel.solution.handler;
 
 import com.flz.excel.solution.context.ExcelParserContext;
+import com.flz.excel.solution.dto.ImportRow;
 import com.flz.excel.solution.exception.ExcelParseBusinessException;
-import com.flz.excel.solution.row.ImportRow;
 
 import javax.validation.ConstraintViolation;
 import javax.validation.Validation;

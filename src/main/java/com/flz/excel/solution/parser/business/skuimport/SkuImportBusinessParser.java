@@ -1,7 +1,7 @@
 package com.flz.excel.solution.parser.business.skuimport;
 
-import com.flz.excel.solution.context.SkuExcelParserContext;
-import com.flz.excel.solution.dto.SkuImportResponseDTO;
+import com.flz.excel.solution.context.skuimport.SkuExcelParserContext;
+import com.flz.excel.solution.dto.skuimport.SkuImportResponseDTO;
 import com.flz.excel.solution.parser.business.ExcelBusinessParser;
 
 public class SkuImportBusinessParser extends ExcelBusinessParser<SkuExcelParserContext, SkuImportResponseDTO> {

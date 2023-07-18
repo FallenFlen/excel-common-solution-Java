@@ -1,9 +1,9 @@
 package com.flz.excel.solution.handler.skuimport;
 
 import com.flz.excel.solution.context.ExcelParserContext;
-import com.flz.excel.solution.dto.SkuImportDTO;
+import com.flz.excel.solution.dto.ImportRow;
+import com.flz.excel.solution.dto.skuimport.SkuImportDTO;
 import com.flz.excel.solution.handler.RowBusinessHandler;
-import com.flz.excel.solution.row.ImportRow;
 
 import java.util.List;
 
