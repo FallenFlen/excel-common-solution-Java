@@ -11,8 +11,6 @@ public interface ExcelParserContext<T> {
 
     List<ImportRow<T>> getRowsWithoutException();
 
-    List<ExcelParseBusinessException> getAllExceptions();
-
     // 行-该行的所有异常
     Map<Integer, List<ExcelParseBusinessException>> getRowAndExceptionsMap();
 
