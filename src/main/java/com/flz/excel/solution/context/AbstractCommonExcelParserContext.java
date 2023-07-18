@@ -5,6 +5,7 @@ import com.flz.excel.solution.enums.ExcelParseExceptionLevel;
 import com.flz.excel.solution.exception.ExcelParseBusinessException;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
+import org.apache.commons.collections4.CollectionUtils;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -23,7 +24,6 @@ import java.util.stream.Collectors;
 public abstract class AbstractCommonExcelParserContext<T> implements ExcelParserContext<T> {
     protected List<ImportRow<T>> rows = new ArrayList<>();
     protected Map<Integer, List<ExcelParseBusinessException>> exceptionMap = new HashMap<>();
-    protected String warningInfo;
 
     @Override
     public List<ImportRow<T>> getAllRows() {
@@ -69,19 +69,52 @@ public abstract class AbstractCommonExcelParserContext<T> implements ExcelParser
 
     @Override
     public String getWarningInfo() {
-        return warningInfo;
+        return buildTips(ExcelParseExceptionLevel.WARNING);
+    }
+
+    @Override
+    public String getErrorInfo() {
+        return buildTips(ExcelParseExceptionLevel.ERROR);
     }
 
     @Override
     public int getWarningLineCount() {
-        return (int) exceptionMap.values().stream()
-                .flatMap(List::stream)
-                .filter(it -> it.getLevel() == ExcelParseExceptionLevel.WARNING)
-                .count();
+        return getExceptionCountBy(ExcelParseExceptionLevel.WARNING);
     }
 
     @Override
-    public int getSuccessCount() {
-        return rows.size() - getWarningLineCount();
+    public int getSuccessLineCount() {
+        return getRowsWithoutException().size();
+    }
+
+    @Override
+    public int getErrorLineCount() {
+        return getExceptionCountBy(ExcelParseExceptionLevel.ERROR);
+    }
+
+    private int getExceptionCountBy(ExcelParseExceptionLevel level) {
+        return (int) exceptionMap.values().stream()
+                .flatMap(List::stream)
+                .filter(it -> it.getLevel() == level)
+                .count();
+    }
+
+    // 构建提示信息
+    private String buildTips(ExcelParseExceptionLevel level) {
+        return getRowAndExceptionsMap().values().stream()
+                .map(it -> buildSingleLineTips(it, level))
+                .collect(Collectors.joining("\n"));
+    }
+
+    private String buildSingleLineTips(List<ExcelParseBusinessException> exceptions, ExcelParseExceptionLevel level) {
+        if (CollectionUtils.isEmpty(exceptions)) {
+            return "";
+        }
+
+        return exceptions.stream()
+                .filter(it -> it.getLevel() == level)
+                .map(it -> String.format("%s | Line %s - %s", level.name(), it.getLineNum(), it.getErrorCode()))
+                .collect(Collectors.joining("\n"));
+
     }
 }
