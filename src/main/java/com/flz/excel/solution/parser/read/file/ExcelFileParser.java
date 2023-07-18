@@ -29,7 +29,7 @@ public class ExcelFileParser<T> {
 
     public void batchParse(InputStream inputStream, Consumer<List<ImportRow<T>>> handler, Class<T> type, int batchSize, int headRowNumber) {
         try {
-            ExcelFileBatchParseListener<T> parseListener = new ExcelFileBatchParseListener<>(batchSize, handler);
+            ExcelFileBatchParseListener<T> parseListener = new ExcelFileBatchParseListener<>(batchSize, headRowNumber, handler);
             EasyExcel.read(inputStream, type, parseListener)
                     .excelType(ExcelTypeEnum.XLSX)
                     .autoCloseStream(true)
