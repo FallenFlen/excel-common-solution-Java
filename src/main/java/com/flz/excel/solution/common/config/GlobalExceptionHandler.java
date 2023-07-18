@@ -12,7 +12,7 @@ public class GlobalExceptionHandler {
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler
-    public ErrorResult handleE(BusinessException e) {
+    public ErrorResult handleBusinessException(BusinessException e) {
         e.printStackTrace();
         return ErrorResult.of(HttpStatus.BAD_REQUEST.value(), e.getMessage());
     }
