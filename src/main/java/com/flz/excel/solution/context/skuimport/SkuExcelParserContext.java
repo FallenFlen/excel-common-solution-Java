@@ -8,10 +8,15 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.HashMap;
+import java.util.Map;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
 public class SkuExcelParserContext extends AbstractCommonExcelParserContext<SkuImportDTO> {
     private SkuImportResponseDTO skuImportResponseDTO;
+    private Map<String, String> spuMap = new HashMap<>();
+    private Map<String, String> storageMap = new HashMap<>();
 }
