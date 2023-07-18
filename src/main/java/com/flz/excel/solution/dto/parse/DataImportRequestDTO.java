@@ -1,4 +1,4 @@
-package com.flz.excel.solution.dto;
+package com.flz.excel.solution.dto.parse;
 
 import com.flz.excel.solution.enums.DataImportType;
 import lombok.AllArgsConstructor;

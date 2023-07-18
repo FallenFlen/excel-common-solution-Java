@@ -1,7 +1,7 @@
 package com.flz.excel.solution.service;
 
-import com.flz.excel.solution.dto.BaseImportResponseDTO;
-import com.flz.excel.solution.dto.DataImportRequestDTO;
+import com.flz.excel.solution.dto.parse.BaseImportResponseDTO;
+import com.flz.excel.solution.dto.parse.DataImportRequestDTO;
 import com.flz.excel.solution.enums.DataImportType;
 import com.flz.excel.solution.exception.BusinessException;
 import lombok.RequiredArgsConstructor;

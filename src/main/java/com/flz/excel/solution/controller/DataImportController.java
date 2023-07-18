@@ -1,7 +1,7 @@
 package com.flz.excel.solution.controller;
 
-import com.flz.excel.solution.dto.BaseImportResponseDTO;
-import com.flz.excel.solution.dto.DataImportRequestDTO;
+import com.flz.excel.solution.dto.parse.BaseImportResponseDTO;
+import com.flz.excel.solution.dto.parse.DataImportRequestDTO;
 import com.flz.excel.solution.service.DataImportService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;

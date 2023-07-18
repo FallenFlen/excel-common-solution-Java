@@ -1,11 +1,11 @@
 package com.flz.excel.solution.service;
 
-import com.flz.excel.solution.context.skuimport.SkuExcelParserContext;
-import com.flz.excel.solution.dto.ImportRow;
-import com.flz.excel.solution.dto.skuimport.SkuImportDTO;
-import com.flz.excel.solution.dto.skuimport.SkuImportResponseDTO;
+import com.flz.excel.solution.dto.parse.ImportRow;
+import com.flz.excel.solution.dto.parse.skuimport.SkuImportDTO;
+import com.flz.excel.solution.dto.parse.skuimport.SkuImportResponseDTO;
 import com.flz.excel.solution.parser.business.skuimport.SkuImportBusinessParser;
-import com.flz.excel.solution.parser.read.file.ExcelFileParser;
+import com.flz.excel.solution.parser.context.skuimport.SkuExcelParserContext;
+import com.flz.excel.solution.parser.file.ExcelFileParser;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

@@ -1,6 +1,6 @@
-package com.flz.excel.solution.dto.skuimport;
+package com.flz.excel.solution.dto.parse.skuimport;
 
-import com.flz.excel.solution.dto.BaseImportResponseDTO;
+import com.flz.excel.solution.dto.parse.BaseImportResponseDTO;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
