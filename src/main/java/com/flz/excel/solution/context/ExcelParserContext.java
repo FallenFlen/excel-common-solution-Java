@@ -24,5 +24,8 @@ public interface ExcelParserContext<T> {
 
     String getWarningInfo();
 
-    void setWarningInfo(String warningInfo);
+    int getWarningLineCount();
+
+    int getSuccessCount();
+
 }

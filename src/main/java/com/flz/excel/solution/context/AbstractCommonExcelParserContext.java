@@ -64,16 +64,24 @@ public abstract class AbstractCommonExcelParserContext<T> implements ExcelParser
 
     @Override
     public boolean hasWarning() {
-        return exceptionMap.values().stream()
-                .flatMap(List::stream)
-                .anyMatch(it -> it.getLevel() == ExcelParseExceptionLevel.WARNING);
+        return getWarningLineCount() == 0;
     }
 
+    @Override
     public String getWarningInfo() {
         return warningInfo;
     }
 
-    public void setWarningInfo(String warningInfo) {
-        this.warningInfo = warningInfo;
+    @Override
+    public int getWarningLineCount() {
+        return (int) exceptionMap.values().stream()
+                .flatMap(List::stream)
+                .filter(it -> it.getLevel() == ExcelParseExceptionLevel.WARNING)
+                .count();
+    }
+
+    @Override
+    public int getSuccessCount() {
+        return rows.size() - getWarningLineCount();
     }
 }

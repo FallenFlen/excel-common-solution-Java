@@ -8,7 +8,7 @@ public class SkuImportBusinessParser extends ExcelBusinessParser<SkuExcelParserC
 
     @Override
     public SkuImportResponseDTO generateResultDirectly() {
-        return null;
+        return context.getSkuImportResponseDTO();
     }
 
     @Override
