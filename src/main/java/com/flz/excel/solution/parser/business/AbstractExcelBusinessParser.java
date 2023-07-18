@@ -11,7 +11,7 @@ import java.util.List;
 
 @Slf4j
 @AllArgsConstructor
-public abstract class ExcelBusinessParser<T extends ExcelParserContext, R extends BaseImportResponseDTO> {
+public abstract class AbstractExcelBusinessParser<T extends ExcelParserContext, R extends BaseImportResponseDTO> {
     protected List<RowBusinessHandler<T>> handlers;
     protected T context;
 
