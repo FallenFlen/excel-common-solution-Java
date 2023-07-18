@@ -32,13 +32,13 @@ public abstract class AbstractCommonExcelParserContext<T> implements ExcelParser
 
     @Override
     public List<ImportRow<T>> getRowsWithoutException() {
-        Set<Integer> keySet = exceptionMap.entrySet().stream()
-                // 警告可当作导入成功
-                .filter(it -> it.getValue().stream().allMatch(it1 -> it1.getLevel() != ExcelParseExceptionLevel.ERROR))
+        Set<Integer> errorRows = exceptionMap.entrySet().stream()
+                // 只有错误当作导入失败，警告可当作导入成功
+                .filter(it -> it.getValue().stream().allMatch(it1 -> it1.getLevel() == ExcelParseExceptionLevel.ERROR))
                 .map(Map.Entry::getKey)
                 .collect(Collectors.toSet());
         return rows.stream()
-                .filter(it -> !keySet.contains(it.getLineNum()))
+                .filter(it -> !errorRows.contains(it.getLineNum()))
                 .collect(Collectors.toList());
     }
 
