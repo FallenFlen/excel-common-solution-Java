@@ -1,3 +1,13 @@
 excel:
   parser:
     batch-size: 100
+spring:
+  application:
+    name: excel-common-solution
+  servlet:
+    multipart:
+      max-file-size: 1GB
+
+server:
+  port: 8080
+
