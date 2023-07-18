@@ -27,10 +27,12 @@ public class BaseValidationHandler<T> implements RowBusinessHandler<ExcelParserC
             for (ImportRow<T> row : rows) {
                 // 校验失败的集合
                 Set<ConstraintViolation<T>> constraintViolations = validator.validate(row.getData());
-                List<ExcelParseBusinessException> exceptions = constraintViolations.stream()
-                        .map(it -> ExcelParseBusinessException.error(it.getMessage(), row.getLineNum())) // error级别
-                        .collect(Collectors.toList());
-                context.addExceptions(exceptions);
+                if (!constraintViolations.isEmpty()) {
+                    List<ExcelParseBusinessException> exceptions = constraintViolations.stream()
+                            .map(it -> ExcelParseBusinessException.error(it.getMessage(), row.getLineNum())) // error级别
+                            .collect(Collectors.toList());
+                    context.addExceptions(exceptions);
+                }
             }
         }
 
