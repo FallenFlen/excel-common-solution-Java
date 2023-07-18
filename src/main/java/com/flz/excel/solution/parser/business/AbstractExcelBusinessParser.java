@@ -24,7 +24,7 @@ public abstract class AbstractExcelBusinessParser<T extends ExcelParserContext, 
         String parserName = getParserName();
         if (context.hasWarning()) {
             String warningInfo = context.getWarningInfo();
-            log.warn("[{}] There are {} warnings during parsing:{}", parserName, context.getWarningLineCount(), warningInfo);
+            log.warn("[{}] There are {} warnings during parsing:\n{}", parserName, context.getWarningLineCount(), warningInfo);
         }
         // 如果有Error级别的异常，直接报错
         if (context.hasError()) {
