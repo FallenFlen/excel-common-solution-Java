@@ -99,18 +99,18 @@ public abstract class AbstractCommonExcelParserContext<T> implements ExcelParser
     // 构建提示信息
     private String buildTips(ExcelParseExceptionLevel level) {
         return getRowAndExceptionsMap().values().stream()
-                .map(it -> buildSingleLineTips(it, level))
+                .map(it -> buildSingleLineTip(it, level))
                 .collect(Collectors.joining("\n"));
     }
 
-    private String buildSingleLineTips(List<ExcelParseBusinessException> exceptions, ExcelParseExceptionLevel level) {
+    private String buildSingleLineTip(List<ExcelParseBusinessException> exceptions, ExcelParseExceptionLevel level) {
         if (CollectionUtils.isEmpty(exceptions)) {
             return "";
         }
 
         return exceptions.stream()
                 .filter(it -> it.getLevel() == level)
-                .map(it -> String.format("%s | Line %s - %s", level.name(), it.getLineNum(), it.getErrorCode()))
+                .map(it -> String.format("%s | Line %s - %s", level.name(), it.getLineNum(), it.getMessage()))
                 .collect(Collectors.joining("\n"));
 
     }

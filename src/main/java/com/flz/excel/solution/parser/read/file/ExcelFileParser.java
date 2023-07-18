@@ -40,8 +40,7 @@ public class ExcelFileParser<T> {
                     .doRead();
         } catch (Exception e) {
             log.error("parse excel failed:", e);
-            e.printStackTrace();
-            throw new BusinessException(e.getMessage(), "parse excel failed");
+            throw new BusinessException("parse excel failed", e.getMessage());
         }
     }
 }
