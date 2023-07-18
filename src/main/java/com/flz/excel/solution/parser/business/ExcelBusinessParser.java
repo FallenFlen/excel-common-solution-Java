@@ -29,7 +29,7 @@ public abstract class ExcelBusinessParser<T extends ExcelParserContext, R extend
         // 如果有Error级别的异常，直接报错
         if (context.hasError()) {
             String errorInfo = context.getErrorInfo();
-            log.error("[{}] There are {} errors during parsing:{}", parserName, context.getErrorLineCount(), errorInfo);
+            log.error("[{}] There are {} errors during parsing:\n{}", parserName, context.getErrorLineCount(), errorInfo);
             throw new BusinessException(String.format("[%s] There are errors during parsing:%s", parserName, errorInfo));
         }
 
