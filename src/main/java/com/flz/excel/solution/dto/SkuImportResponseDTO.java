@@ -8,7 +8,6 @@ import lombok.Setter;
 import java.math.BigDecimal;
 
 @AllArgsConstructor
-@NoArgsConstructor
 @Getter
 @Setter
 public class SkuImportResponseDTO extends BaseImportResponseDTO<SkuImportResponseDTO.Row> {

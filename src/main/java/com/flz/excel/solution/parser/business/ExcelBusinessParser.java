@@ -1,6 +1,7 @@
 package com.flz.excel.solution.parser.business;
 
 import com.flz.excel.solution.context.ExcelParserContext;
+import com.flz.excel.solution.dto.BaseImportResponseDTO;
 import com.flz.excel.solution.enums.ExcelParseExceptionLevel;
 import com.flz.excel.solution.exception.BusinessException;
 import com.flz.excel.solution.exception.ExcelParseBusinessException;
@@ -9,22 +10,25 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections4.CollectionUtils;
 
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @Slf4j
-public abstract class ExcelBusinessParser<T extends ExcelParserContext<T>, R> {
+public abstract class ExcelBusinessParser<T extends ExcelParserContext, R extends BaseImportResponseDTO> {
     protected List<RowBusinessHandler<T>> handlers;
     protected T context;
 
     // 生成结果：执行整条责任链，并直接generateResultDirectly
-    public List<R> generateResult() {
+    public R generateResult() {
         for (RowBusinessHandler<T> handler : handlers) {
             handler.handle(context);
         }
 
         String parserName = getParserName();
         if (context.hasWarning()) {
-            log.warn("[{}] There are warns during parsing:{}", parserName, buildTips(ExcelParseExceptionLevel.WARNING));
+            String warningInfo = buildTips(ExcelParseExceptionLevel.WARNING);
+            context.setWarningInfo(warningInfo);
+            log.warn("[{}] There are warnings during parsing:{}", parserName, warningInfo);
         }
         // 如果有Error级别的异常，直接报错
         if (context.hasError()) {
@@ -37,14 +41,15 @@ public abstract class ExcelBusinessParser<T extends ExcelParserContext<T>, R> {
     }
 
     // 子类实现真正的构建返回结果的逻辑
-    public abstract List<R> generateResultDirectly();
+    public abstract R generateResultDirectly();
 
     public abstract String getParserName();
 
     // 构建提示信息
     private String buildTips(ExcelParseExceptionLevel level) {
-        return context.getRowAndExceptionsMap().values().stream()
-                .map(it -> buildSingleLineTips(it, level))
+        Map<Integer, List<ExcelParseBusinessException>> rowAndExceptionsMap = context.getRowAndExceptionsMap();
+        return rowAndExceptionsMap.values().stream()
+                .map(it -> buildSingleLineTips((List<ExcelParseBusinessException>) it, level))
                 .collect(Collectors.joining("\n"));
     }
 

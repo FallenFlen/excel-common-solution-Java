@@ -3,6 +3,8 @@ package com.flz.excel.solution.context;
 import com.flz.excel.solution.enums.ExcelParseExceptionLevel;
 import com.flz.excel.solution.exception.ExcelParseBusinessException;
 import com.flz.excel.solution.row.ImportRow;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -16,9 +18,12 @@ import java.util.stream.Collectors;
  *
  * @param <T>
  */
-public class CommonExcelParserContext<T> implements ExcelParserContext<T> {
-    private List<ImportRow<T>> rows = new ArrayList<>();
-    private Map<Integer, List<ExcelParseBusinessException>> exceptionMap = new HashMap<>();
+@AllArgsConstructor
+@NoArgsConstructor
+public abstract class AbstractCommonExcelParserContext<T> implements ExcelParserContext<T> {
+    protected List<ImportRow<T>> rows = new ArrayList<>();
+    protected Map<Integer, List<ExcelParseBusinessException>> exceptionMap = new HashMap<>();
+    protected String warningInfo;
 
     @Override
     public List<ImportRow<T>> getAllRows() {
@@ -62,5 +67,13 @@ public class CommonExcelParserContext<T> implements ExcelParserContext<T> {
         return exceptionMap.values().stream()
                 .flatMap(List::stream)
                 .anyMatch(it -> it.getLevel() == ExcelParseExceptionLevel.WARNING);
+    }
+
+    public String getWarningInfo() {
+        return warningInfo;
+    }
+
+    public void setWarningInfo(String warningInfo) {
+        this.warningInfo = warningInfo;
     }
 }

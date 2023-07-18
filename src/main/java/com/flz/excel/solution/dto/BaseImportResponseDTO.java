@@ -14,8 +14,6 @@ import java.util.List;
 public abstract class BaseImportResponseDTO<T> {
     protected Integer successLineCount;
     protected Integer warningLineCount;
-    protected Integer errorLineCount;
     protected String warningMessage;
-    protected String errorMessage;
     protected List<T> data;
 }

@@ -21,4 +21,8 @@ public interface ExcelParserContext<T> {
     boolean hasError();
 
     boolean hasWarning();
+
+    String getWarningInfo();
+
+    void setWarningInfo(String warningInfo);
 }
